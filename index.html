@@ -1,10 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallo Welt</title>
 </head>
 <body>
 
+<main>
+    <h1>Some random text</h1>
+    <p>
+        Shewing met parties gravity husband sex pleased. On to no kind do next feel held walk. Last own loud and knew
+        give gay four. Sentiments motionless or principles preference excellence am. Literature surrounded insensible at
+        indulgence or to admiration remarkably. Matter future lovers desire marked boy use. Chamber reached do he
+        nothing be.
+    </p>
+    <p>
+        Built purse maids cease her ham new seven among and. Pulled coming wooded tended it answer remain me be. So
+        landlord by we unlocked sensible it. Fat cannot use denied excuse son law. Wisdom happen suffer common the
+        appear ham beauty her had. Or belonging zealously existence as by resources.
+    </p>
+    <p>
+        John draw real poor on call my from. May she mrs furnished discourse extremely. Ask doubt noisy shade guest did
+        built her him. Ignorant repeated hastened it do. Consider bachelor he yourself expenses no. Her itself active
+        giving for expect vulgar months. Discovery commanded fat mrs remaining son she principle middleton neglected. Be
+        miss he in post sons held. No tried is defer do money scale rooms.
+    </p>
+</main>
+<footer>
+    <p>Here's the footer</p>
+</footer>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+
+    var messages = document.getElementById('messages');
+    var form = document.getElementById('form');
+    var input = document.getElementById('input');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (input.value) {
+            socket.emit('chat message', input.value);
+            input.value = '';
+        }
+    });
+
+    socket.on('chat message', function(msg) {
+        var item = document.createElement('li');
+        item.textContent = msg;
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+</script>
 </body>
 </html>
+
